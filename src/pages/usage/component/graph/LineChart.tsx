@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
-import { useTheme } from "colbrush/client";
+// import { useTheme } from "colbrush/client";
 import GraphContainer from "./GraphContainer";
 
 const data = [
@@ -21,7 +21,7 @@ const data = [
 ];
 
 function LineChart() {
-  const theme = useTheme().theme;
+  // const theme = useTheme().theme;
 
   const rootStyle = getComputedStyle(document.documentElement);
 
@@ -50,7 +50,7 @@ function LineChart() {
       ]);
 
     const xRenderer = am5xy.AxisRendererX.new(root, {
-      minGridDistance: 40, // 틱 간격 조정
+      minGridDistance: 40,
     });
     xRenderer.labels.template.setAll({
       fontFamily: "Pretendard Variable",
@@ -58,7 +58,7 @@ function LineChart() {
       marginLeft: 10,
       centerX: 1,
       textAlign: "right",
-      oversizedBehavior: "wrap", // 글자가 넘칠 경우 줄바꿈
+      oversizedBehavior: "wrap",
       fill: am5.color(rootStyle.getPropertyValue("--color-gray-100")),
     });
 
@@ -115,7 +115,8 @@ function LineChart() {
     return () => {
       root.dispose();
     };
-  }, [theme]);
+  }, []); // Colbrush 테스트용: theme 의존성 비활성화
+  // }, [theme]); // Colbrush 활성화: 이 줄의 주석을 해제하고 위 줄을 주석 처리
 
   return (
     <GraphContainer className={`min-h-[300px]`}>

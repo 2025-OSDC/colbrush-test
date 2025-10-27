@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
-import { useTheme } from "colbrush/client";
+// import { useTheme } from "colbrush/client";
 import GraphContainer from "./GraphContainer";
 
 interface ChartData {
@@ -12,7 +12,7 @@ interface ChartData {
 }
 
 const DonutChart = () => {
-  const theme = useTheme().theme;
+  // const theme = useTheme().theme;
 
   const rootStyle = getComputedStyle(document.documentElement);
 
@@ -39,22 +39,18 @@ const DonutChart = () => {
 
   useEffect(() => {
     if (!chartRef.current) return;
-    // amCharts 루트 생성
     const root = am5.Root.new(chartRef.current);
     rootRef.current = root;
 
-    // 애니메이션 테마 설정
     root.setThemes([am5themes_Animated.new(root)]);
 
-    // 파이 차트 생성
     const chart = root.container.children.push(
       am5percent.PieChart.new(root, {
         layout: root.verticalLayout,
-        innerRadius: am5.percent(60), // 도넛 모양
+        innerRadius: am5.percent(60),
       }),
     );
 
-    // 시리즈 생성
     const series = chart.series.push(
       am5percent.PieSeries.new(root, {
         valueField: "value",
@@ -63,22 +59,18 @@ const DonutChart = () => {
       }),
     );
 
-    // 라벨과 틱 숨기기
     series.labels.template.set("visible", false);
     series.ticks.template.set("visible", false);
 
-    // 슬라이스 스타일링
     series.slices.template.setAll({
       strokeWidth: 0,
       cornerRadius: 8,
     });
 
-    // 호버 효과
     series.slices.template.states.create("hover", {
       scale: 1.05,
     });
 
-    // 색상 적용
     series.slices.template.adapters.add("fill", function (fill, target) {
       const dataItem = target.dataItem;
       if (dataItem) {
@@ -97,19 +89,18 @@ const DonutChart = () => {
       return stroke;
     });
 
-    // 데이터 설정
     series.data.setAll(data);
 
-    // 애니메이션
     series.appear(1000, 100);
 
-    // 정리 함수
     return () => {
       if (rootRef.current) {
         rootRef.current.dispose();
       }
     };
-  }, [theme]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Colbrush 테스트용: theme 의존성 비활성화
+  // }, [theme]); // Colbrush 활성화: 이 줄의 주석을 해제하고 위 줄을 주석 처리
 
   return (
     <GraphContainer>

@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import { SimulationFilter } from "colbrush/devtools";
-import { ThemeSwitcher } from "colbrush/client";
+// import { SimulationFilter } from "colbrush/devtools";
+// import { ThemeSwitcher } from "colbrush/client";
 
 export default function Layout() {
   return (
@@ -11,8 +11,8 @@ export default function Layout() {
       <Header />
       <main className="flex-1">
         <Outlet />
-        <SimulationFilter allowInProd={true} position={"left-top"} />
-        <ThemeSwitcher />
+        {/* <SimulationFilter allowInProd={true} position={"left-top"} /> */}
+        {/* <ThemeSwitcher /> */}
       </main>
       <Footer />
     </div>

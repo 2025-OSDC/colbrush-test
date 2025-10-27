@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import { Api, Install, Usage } from "./pages";
-import { ThemeProvider } from "colbrush/client";
+// import { ThemeProvider } from "colbrush/client";
 
 function App() {
   return (
-    <ThemeProvider>
+    // <ThemeProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Install />} />
@@ -13,7 +13,7 @@ function App() {
           <Route path="usage" element={<Usage />} />
         </Route>
       </Routes>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 

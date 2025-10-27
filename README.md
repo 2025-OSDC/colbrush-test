@@ -107,6 +107,12 @@ src/
    - Colbrush 스타일시트 import 주석 처리
    - 색각 이상 유형별 테마 CSS 변수 주석 처리 (deuteranopia, protanopia, tritanopia, monochromacy)
 
+4. **[src/pages/usage/component/graph/MapChart.tsx](src/pages/usage/component/graph/MapChart.tsx)**, **[src/pages/usage/component/graph/DonutChart.tsx](src/pages/usage/component/graph/DonutChart.tsx)**, **[src/pages/usage/component/graph/LineChart.tsx](src/pages/usage/component/graph/LineChart.tsx)**
+   - `useTheme` hook import 주석 처리
+   - `theme` 변수 주석 처리
+   - `useEffect` dependency array에서 `theme` 의존성 비활성화
+
+
 ### 테스트 진행 방법
 
 1. **리포지토리 클론 및 설치**
@@ -177,6 +183,71 @@ import { ThemeSwitcher } from "colbrush/client";
 // JSX에서 주석 해제
 <SimulationFilter allowInProd={true} />
 <ThemeSwitcher />
+```
+
+### 4. 차트 컴포넌트 활성화
+
+#### MapChart
+
+**[src/pages/usage/component/graph/MapChart.tsx](src/pages/usage/component/graph/MapChart.tsx:6,19,79-80)**
+
+```tsx
+// 주석 해제
+import { useTheme } from "colbrush/client";
+
+const MapChart = () => {
+  // 주석 해제
+  const theme = useTheme().theme;
+
+  useEffect(() => {
+    // ...
+    // 79-80번 줄: 아래 줄을 주석 처리하고
+  }, []); // Colbrush 테스트용: theme 의존성 비활성화
+  // 이 줄의 주석을 해제
+  // }, [theme]); // Colbrush 활성화: 이 줄의 주석을 해제하고 위 줄을 주석 처리
+};
+```
+
+#### DonutChart
+
+**[src/pages/usage/component/graph/DonutChart.tsx](src/pages/usage/component/graph/DonutChart.tsx:5,15,113-114)**
+
+```tsx
+// 주석 해제
+import { useTheme } from "colbrush/client";
+
+const DonutChart = () => {
+  // 주석 해제
+  const theme = useTheme().theme;
+
+  useEffect(() => {
+    // ...
+    // 113-114번 줄: 아래 줄을 주석 처리하고
+  }, []); // Colbrush 테스트용: theme 의존성 비활성화
+  // 이 줄의 주석을 해제
+  // }, [theme]); // Colbrush 활성화: 이 줄의 주석을 해제하고 위 줄을 주석 처리
+};
+```
+
+#### LineChart
+
+**[src/pages/usage/component/graph/LineChart.tsx](src/pages/usage/component/graph/LineChart.tsx:5,24,118-119)**
+
+```tsx
+// 주석 해제
+import { useTheme } from "colbrush/client";
+
+function LineChart() {
+  // 주석 해제
+  const theme = useTheme().theme;
+
+  useEffect(() => {
+    // ...
+    // 118-119번 줄: 아래 줄을 주석 처리하고
+  }, []); // Colbrush 테스트용: theme 의존성 비활성화
+  // 이 줄의 주석을 해제
+  // }, [theme]); // Colbrush 활성화: 이 줄의 주석을 해제하고 위 줄을 주석 처리
+}
 ```
 
 ---
